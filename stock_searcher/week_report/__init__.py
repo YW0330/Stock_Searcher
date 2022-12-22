@@ -1,0 +1,1 @@
+from stock_searcher.week_report.mainwidget import WidgetWeekReport

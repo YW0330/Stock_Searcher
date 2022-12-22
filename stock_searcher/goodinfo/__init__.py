@@ -1,0 +1,1 @@
+from stock_searcher.goodinfo.mainwidget import WidgetGoodinfo

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>754</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <family>微軟正黑體</family>
+   </font>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>上市三大法人買賣超&amp;Goodinfo</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabAmountStatistics">
+       <attribute name="title">
+        <string notr="true">買賣金額表</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tabDayReport">
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <attribute name="title">
+        <string>買賣超日表</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tabWeekReport">
+       <attribute name="title">
+        <string>買賣超週表</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tabMonthReport">
+       <attribute name="title">
+        <string>買賣超月表</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tabGoodinfo">
+       <attribute name="title">
+        <string>Goodinfo</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
