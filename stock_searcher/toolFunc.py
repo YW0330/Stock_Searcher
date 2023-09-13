@@ -1,6 +1,7 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import chrome, edge
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtCore import QAbstractTableModel, Qt
 from bs4 import BeautifulSoup
@@ -39,12 +40,27 @@ class setComboBox():
 
     def catch(self):
         url = 'https://www.twse.com.tw/zh/page/trading/fund/T86.html'
-        chrome_options = Options()
-        chrome_options.add_argument('--headless')  # 啟動無痕模式
-        chrome_options.add_argument('--disable-gpu')  # windows必須加入此行
-        service = ["hide_console"]
-        driver = webdriver.Chrome(
-            ChromeDriverManager().install(), chrome_options=chrome_options, service_args=service)
+        try:
+            edge_options = edge.options.Options()
+            edge_options.add_argument("headless")
+            edge_service = edge.service.Service(
+                EdgeChromiumDriverManager().install())
+            edge_service.creation_flags = 0x08000000  # 關閉 console 視窗
+            driver = webdriver.Edge(service=edge_service, options=edge_options)
+        except Exception as e:
+            print(e.msg)
+            chrome_options = chrome.options.Options()
+            chrome_options.add_experimental_option("detach", True)
+            chrome_options.add_experimental_option(
+                "excludeSwitches", ['enable-automation'])
+            prefs = {"credentials_enable_service": False,
+                     "profile.password_manager_enabled": False}
+            chrome_options.add_experimental_option("prefs", prefs)
+            chrome_service = chrome.service.Service(
+                ChromeDriverManager().install())
+            chrome_service.creation_flags = 0x08000000  # 關閉 console 視窗
+            self.driver = webdriver.Chrome(
+                service=chrome_service, options=chrome_options)
         driver.get(url)
 
         soup = BeautifulSoup(driver.page_source, features='lxml')
