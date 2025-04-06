@@ -1,6 +1,7 @@
 from stock_searcher.ui.ui_widget_day_report import Ui_WidgetDayReport
 from stock_searcher.toolFunc import df2Excel, getWebContent
 from PyQt5.QtCore import QObject
+from PyQt5.QtWidgets import QMessageBox
 import time
 
 
@@ -25,6 +26,7 @@ class WidgetDayReport(QObject):
         checked, self.df, model = getWebContent(url, "台灣證卷交易所")
         if checked:
             self.ui.label_status.setText("查無此資料!!")
+            QMessageBox.warning(None, "提示", "年份請輸入'西元年'")
             self.uiEnable(False)
         else:
             self.uiEnable(True)
