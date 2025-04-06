@@ -74,9 +74,15 @@ class setComboBox():
 def getWebContent(url, websiteType, divID=""):
     checked = False
     headers = {
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.54"
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0",
     }
-    r = requests.get(url, headers=headers)
+    cookies = {
+        'CLIENT%5FID': '20250201215246820%5F220%2E136%2E161%2E233',
+        'TW_STOCK_BROWSE_LIST': '8299%7C6129%7C2454%7C1459%7C3189%7C2337%7C1528%7C0050%7C6669%7C6142%7C4938%7C2357%7C3515%7C2401%7C3592%7C5289%7C2330%7C2308%7C2360%7C4906',
+        'IS_TOUCH_DEVICE': 'F',
+        'SCREEN_SIZE': 'WIDTH=1920&HEIGHT=1080',
+    }
+    r = requests.get(url, headers=headers, cookies=cookies)
     if r.status_code == requests.codes.ok:
         try:
             if websiteType == "台灣證卷交易所":
@@ -85,7 +91,8 @@ def getWebContent(url, websiteType, divID=""):
                 r.encoding = 'utf-8'
                 soup = BeautifulSoup(r.text, "lxml")
                 data = soup.select_one(divID)
-                df = pd.read_html(data.prettify())[0]
+                df = pd.read_html(data.prettify())
+                df = df[len(df)-1]
                 if websiteType == "獲利指標":
                     df.drop(df[df['年度', '年度'] == "年度"].index, inplace=True)
             model = pandasModel(df)
