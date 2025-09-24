@@ -5,7 +5,7 @@
     ```shell
     git clone https://github.com/YW0330/Stock_Searcher.git
     ```
-- 下載相關套件 Download depenaencies packages in Python `v3.10.7`
+- 下載相關套件 Download depenaencies packages in Python `v3.13.7`
     ```shell
     pip install -r requirement.txt
     ```
