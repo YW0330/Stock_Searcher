@@ -1,6 +1,7 @@
 import PyInstaller.__main__
 import os
 import shutil
+VERSION = "2.0"
 
 # NOTE you need to change the path if you want to build it.
 # A path to search for imports (like using PYTHONPATH).
@@ -26,7 +27,7 @@ def build_exec():
         'stock_searcher/__main__.py',
 
         # exe name
-        '--name=上市三大法人買賣超與Goodinfo',
+        '--name=上市三大法人買賣超與Goodinfo_v'+VERSION,
 
         # NOTE Clean PyInstaller cache and remove temporary files before building.
         # will slow down the speed
