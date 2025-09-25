@@ -5,13 +5,14 @@ import time
 
 
 class WidgetGoodinfo(QObject):
-    def __init__(self, widget):
+    def __init__(self, widget, cookies):
         super(WidgetGoodinfo, self).__init__()
         self.ui = Ui_WidgetGoodinfo()
         self.ui.setupUi(widget)
         self.ui.pushButton_search.clicked.connect(self.search)
         self.ui.pushButton_export.clicked.connect(self.export)
         self.uiEnable(False)
+        self.cookies = cookies
 
     def search(self):
         self.ui.label_status.setText("等待")
@@ -30,7 +31,7 @@ class WidgetGoodinfo(QObject):
             divID = "#divDetail"
         url += "?STOCK_ID=" + self.stockID
 
-        checked, self.df, model = getWebContent(url, self.type, divID)
+        checked, self.df, model = getWebContent(url, type=self.type, divID=divID, cookies=self.cookies)
         if checked:
             self.ui.label_status.setText("查無此資料!!")
             self.uiEnable(False)

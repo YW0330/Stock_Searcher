@@ -30,7 +30,7 @@ class WidgetAmountStatistics(QObject):
             month = self.ui.lineEdit_month_yy.text()
             month += self.ui.lineEdit_month_mm.text().zfill(2) + '01'
             url = "https://www.twse.com.tw/fund/BFI82U?response=html&monthDate="+month+"&type=month"
-        checked, self.df, model = getWebContent(url, "台灣證卷交易所")
+        checked, self.df, model = getWebContent(url, website="台灣證卷交易所")
         if checked:
             self.ui.label_status.setText("查無此資料!!")
             QMessageBox.warning(None, "提示", "年份請輸入'西元年'<br>週報表請輸入'當週星期一'之日期")

@@ -23,7 +23,7 @@ class WidgetMonthReport(QObject):
         selectType = dict[self.ui.comboBox.currentText()]
         url = "https://www.twse.com.tw/fund/TWT47U?response=html&date=" + \
             month+"&selectType="+selectType
-        checked, self.df, model = getWebContent(url, "台灣證卷交易所")
+        checked, self.df, model = getWebContent(url, website="台灣證卷交易所")
         if checked:
             self.ui.label_status.setText("查無此資料!!")
             QMessageBox.warning(None, "提示", "年份請輸入'西元年'")

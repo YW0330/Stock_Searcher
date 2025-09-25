@@ -20,4 +20,4 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tabWeekReport, parma.options, parma.combo_dict)
         self.Month = WidgetMonthReport(
             self.tabMonthReport, parma.options, parma.combo_dict)
-        self.Profit = WidgetGoodinfo(self.tabGoodinfo)
+        self.Profit = WidgetGoodinfo(self.tabGoodinfo, parma.cookies)
